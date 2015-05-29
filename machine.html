@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>Turing Machine</title>
+    <script src="table.js"></script>
+  </head>
+  
+  <body onload="pageLoaded(1)">
+    <div>Turing Machine Simulator</div>
+    <div id="machine">
+      <div>
+        <table id="action-table">
+          <tr class="row-mark">
+            <td></td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <button onclick="addRow()">+</button>
+        <button onclick="rmRow()">-</button>
+      </div>
+      <div>
+        <p>
+          <input id="tape-value" type="text"></input>
+        </p>
+        <button id="new-machine" onclick="getNewMachine()">new machine</button>
+        <button id="next-button" onclick="next()">next</button>
+      </div>
+      <div>
+        <canvas id="machine-canvas" width="200" height="200">
+          
+        </canvas>
+      </div>
+    </div>
+  </body>
+
+</html>
