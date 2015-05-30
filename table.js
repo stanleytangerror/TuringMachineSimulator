@@ -49,13 +49,72 @@ function register(element, state, mark) {
       }
 }
 
+function setTable(state, mark, value) {
+      var table = document.getElementById("action-table");
+      var tbody = table.children[0];
+      while (tbody.children.length < 1 + state) {
+            addRow();
+      }
+      var tr = tbody.children[state];
+      var td = tr.children[mark + 1];
+      td.children[0].value = value;
+      td.children[0].onchange();
+}
+
+function Z() {
+      setTable(1, 0, "1O2");
+      setTable(1, 1, "0R1");
+      document.getElementById("tape-value").value = "011100";
+}
+
+function S() {
+      setTable(1, 0, "1L2");
+      setTable(1, 1, "1R1");
+      setTable(2, 0, "0R3");
+      setTable(2, 1, "1L2");
+      document.getElementById("tape-value").value = "011100";
+}
+
+function K() {
+      setTable(1, 0, "0R2");
+      setTable(1, 1, "1R1");
+      setTable(2, 0, "0L3");
+      setTable(2, 1, "0R2");
+      setTable(3, 0, "0L3");
+      setTable(3, 1, "1L4");
+      setTable(4, 0, "0R5");
+      document.getElementById("tape-value").value = "01110111110";
+}
+
+function L() {
+      setTable(1, 0, "0R2");
+      setTable(1, 1, "0R1");
+      document.getElementById("tape-value").value = "01110111110";
+}
+
+function pred() {
+      setTable(1, 1, "0R2");
+      setTable(2, 0, "1O3");
+      document.getElementById("tape-value").value = "01110";
+}
+
+function add() {
+      setTable(1, 0, "1L2");
+      setTable(1, 1, "1R1");
+      setTable(2, 0, "0R3");
+      setTable(2, 1, "1L2");
+      setTable(3, 1, "0R4");
+      setTable(4, 1, "0R5");
+      document.getElementById("tape-value").value = "01110111110";
+}
+
 function pageLoaded(lineCount) {
       var i = 0;
       for (; i < lineCount; ++i) {
             addRow();
       }
       document.getElementById("next-button").disabled = true;
-//         drawMachine();
+      //         drawMachine();
 }
 
 function machine(tapeValue) {
@@ -65,7 +124,7 @@ function machine(tapeValue) {
       drawMachine(tape, scanner, state);
 
       return (function () {
-//            debugger
+            //            debugger
             if (!(state in actions
                   && tape[scanner] in actions[state])) {
                   drawMachine(tape, scanner, state);
@@ -121,24 +180,24 @@ function next(button) {
 
 function drawMachine(tapeValue, scanner, state) {
       var tape = tapeValue;
-//      var tape = [0, 1, 1, 1, 0, 0];
+      //      var tape = [0, 1, 1, 1, 0, 0];
       var canvas = document.getElementById("machine-canvas");
       var painter = canvas.getContext("2d");
       painter.clearRect(0, 0, canvas.width, canvas.height);
       painter.fillStyle = "#000000";
       var i = 0;
-//      debugger
+      //      debugger
       for (; i < tape.length; ++i) {
             drawTapeCell(painter, 10, 50, i, tape[i]);
       }
       drawScanner(painter, 10, 50, scanner, state);
-//      debugger
-//      painter.clearRect(0, 0, canvas.width, canvas.height);
+      //      debugger
+      //      painter.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawScanner(painter, baseX, baseY, index, state) {
-      painter.fillText("^", baseX + 20 * index, baseY + 20 * 2, 20);
-      painter.fillText(state, baseX + 20 * index, baseY + 20 * 3, 20);
+      painter.fillText(String.fromCharCode(8593), baseX + 20 * index, baseY + 20 * 1, 20);
+      painter.fillText(state, baseX + 20 * index, baseY + 20 * 2, 20);
 }
 
 function drawTapeCell(painter, baseX, baseY, index, value) {
@@ -155,25 +214,3 @@ function drawTapeCell(painter, baseX, baseY, index, value) {
                   break;
       }
 }
-
-//function drawTapeCell(painter, baseX, baseY, index, value) {
-//      switch (value) {
-//            case 0:
-//            case "0":
-//                  var grd0 = painter.createLinearGradient(0, 0, 20, 0);
-//                  grd0.addColorStop(0, "#CCCCCC");
-//                  grd0.addColorStop(1, "#EEEEEE");
-//                  painter.fillStyle = grd0;
-//                  break;
-//            case 1:
-//            case "1":
-//                  var grd1 = painter.createLinearGradient(0, 0, 20, 0);
-//                  grd1.addColorStop(0, "#0A0A0A");
-//                  grd1.addColorStop(1, "#AAAAAA");
-//                  painter.fillStyle = grd1;
-//                  break;
-//            default:
-//                  break;
-//      }
-//      painter.fillRect(baseX + 20 * index, baseY, 20, 20);
-//}
