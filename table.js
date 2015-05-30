@@ -25,7 +25,9 @@ function addRow() {
 function rmRow() {
       var table = document.getElementById("action-table");
       var tbody = table.children[0];
-      tbody.removeChild(tbody.lastElementChild);
+      if (tbody.children.length > 1) {
+            tbody.removeChild(tbody.lastElementChild);
+      }
 }
 
 function action(value) {
