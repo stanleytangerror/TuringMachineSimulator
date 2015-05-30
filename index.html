@@ -4,56 +4,51 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
     <title>Turing Machine</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="table.js"></script>
   </head>
   
   <body onload="pageLoaded(2)">
-    <div id="simulator">
-      <div>
+    <div id="simulator" class="container-fluid">
+      <div class="row">
         <h1>Turing Machine Simulator</h1>
       </div>
-      <div id="machine">
-        <div>
-          <p>Action table:</p>
-          <table id="action-table">
-            <tr class="row-mark">
-              <td></td>
-              <td>0</td>
-              <td>1</td>
-            </tr>
-          </table>
+      <div id="machine" class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div>
+            <p>Action table:</p>
+            <table id="action-table" class="table">
+              <tr class="row-mark">
+                <td></td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <button class="btn btn-default btn-sm" onclick="addRow()">+</button>
+            <button class="btn btn-default btn-sm" onclick="rmRow()">-</button>
+            <button class="btn btn-default btn-sm" id="clear-table" onclick="clearTable()">clear table</button>
+          </div>
         </div>
-        <div>
-          <button onclick="addRow()">+</button>
-          <button onclick="rmRow()">-</button>
-          <button id="clear-table" onclick="clearTable()">clear table</button>
-        </div>
-        <div>
+        <div class="col-md-6 col-md-offset-3">
           <p>Examples:</p>
-          <ul style="list-style-type:none">
-          <li>
-            <button id="function-Z" onclick="Z()">Z(x) = 0</button>
-            <button id="function-S" onclick="S()">S(x) = x + 1</button>
-          </li>
-          <li>
-            <button id="function-K" onclick="K()">K(x, y) = x</button>
-            <button id="function-L" onclick="L()">L(x, y) = y</button>
-          </li>
-          <li>
-            <button id="function-pred" onclick="pred()">pred(x) = (x == 0) ? 0 : (x - 1)</button>
-            <button id="function-add" onclick="add()">add(x, y) = x + y</button>
-          </li>
-          </ul>
+          <div class="list-group">
+            <a href="#" class="list-group-item" onclick="Z()">Z(x) = 0</a>
+            <a href="#" class="list-group-item" onclick="S()">S(x) = x + 1</a>
+            <a href="#" class="list-group-item" onclick="K()">K(x, y) = x</a>
+            <a href="#" class="list-group-item" onclick="L()">L(x, y) = y</a>
+            <a href="#" class="list-group-item" onclick="pred()">pred(x) = (x == 0) ? 0 : (x - 1)</a>
+            <a href="#" class="list-group-item" onclick="add()">add(x, y) = x + y</a>
+          </div>
         </div>
-        <div>
+        <div class="col-md-6 col-md-offset-3">
           <p>Input:</p>
-          <p>
-            <input id="tape-value" type="text"></input>
-          </p>
-          <button id="new-machine" onclick="getNewMachine()">new machine</button>
-          <button id="next-button" onclick="next()">next</button>
+          <input id="tape-value" type="text"></input>
+          <button class="btn btn-default btn-sm" id="new-machine" onclick="getNewMachine()">new machine</button>
+          <button class="btn btn-default btn-sm" id="next-button" onclick="next()">next</button>
         </div>
-        <div>
+        <div class="col-md-6 col-md-offset-3">
           <p>Machine:</p>
           <canvas id="machine-canvas" width="300" height="200"></canvas>
         </div>

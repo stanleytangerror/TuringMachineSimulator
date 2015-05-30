@@ -70,7 +70,10 @@ function setTableCell(state, mark, value) {
 }
 
 function clearTableCell(state, mark) {
-      delete actions[state][mark];
+      if (state in actions
+            && mark in actions[state]) {
+            delete actions[state][mark];
+      }
       var input = getTableCell(state, mark);
       input.value = "";
 }
