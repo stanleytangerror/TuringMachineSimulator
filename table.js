@@ -25,7 +25,10 @@ function addRow() {
 function rmRow() {
       var table = document.getElementById("action-table");
       var tbody = table.children[0];
+      debugger
       if (tbody.children.length > 1) {
+            clearTableCell(tbody.children.length - 1, 0);
+            clearTableCell(tbody.children.length - 1, 1);
             tbody.removeChild(tbody.lastElementChild);
       }
 }
@@ -49,7 +52,7 @@ function register(element, state, mark) {
       }
 }
 
-function setTable(state, mark, value) {
+function getTableCell(state, mark) {
       var table = document.getElementById("action-table");
       var tbody = table.children[0];
       while (tbody.children.length < 1 + state) {
@@ -57,8 +60,19 @@ function setTable(state, mark, value) {
       }
       var tr = tbody.children[state];
       var td = tr.children[mark + 1];
-      td.children[0].value = value;
-      td.children[0].onchange();
+      return td.children[0];
+}
+
+function setTableCell(state, mark, value) {
+      var input = getTableCell(state, mark);
+      input.value = value;
+      input.onchange();
+}
+
+function clearTableCell(state, mark) {
+      delete actions[state][mark];
+      var input = getTableCell(state, mark);
+      input.value = "";
 }
 
 function clearTable() {
@@ -67,7 +81,7 @@ function clearTable() {
       var table = document.getElementById("action-table");
       var tbody = table.children[0];
       var i = 1;
-      debugger
+//      debugger
       for (; i < tbody.children.length; ++i) {
             tbody.children[i].children[1].children[0].value = "";
             tbody.children[i].children[2].children[0].value = "";
@@ -76,54 +90,54 @@ function clearTable() {
 
 function Z() {
       clearTable();
-      setTable(1, 0, "1O2");
-      setTable(1, 1, "0R1");
+      setTableCell(1, 0, "1O2");
+      setTableCell(1, 1, "0R1");
       document.getElementById("tape-value").value = "011100";
 }
 
 function S() {
       clearTable();
-      setTable(1, 0, "1L2");
-      setTable(1, 1, "1R1");
-      setTable(2, 0, "0R3");
-      setTable(2, 1, "1L2");
+      setTableCell(1, 0, "1L2");
+      setTableCell(1, 1, "1R1");
+      setTableCell(2, 0, "0R3");
+      setTableCell(2, 1, "1L2");
       document.getElementById("tape-value").value = "011100";
 }
 
 function K() {
       clearTable();
-      setTable(1, 0, "0R2");
-      setTable(1, 1, "1R1");
-      setTable(2, 0, "0L3");
-      setTable(2, 1, "0R2");
-      setTable(3, 0, "0L3");
-      setTable(3, 1, "1L4");
-      setTable(4, 0, "0R5");
+      setTableCell(1, 0, "0R2");
+      setTableCell(1, 1, "1R1");
+      setTableCell(2, 0, "0L3");
+      setTableCell(2, 1, "0R2");
+      setTableCell(3, 0, "0L3");
+      setTableCell(3, 1, "1L4");
+      setTableCell(4, 0, "0R5");
       document.getElementById("tape-value").value = "01110111110";
 }
 
 function L() {
       clearTable();
-      setTable(1, 0, "0R2");
-      setTable(1, 1, "0R1");
+      setTableCell(1, 0, "0R2");
+      setTableCell(1, 1, "0R1");
       document.getElementById("tape-value").value = "01110111110";
 }
 
 function pred() {
       clearTable();
-      setTable(1, 1, "0R2");
-      setTable(2, 0, "1O3");
+      setTableCell(1, 1, "0R2");
+      setTableCell(2, 0, "1O3");
       document.getElementById("tape-value").value = "01110";
 }
 
 function add() {
       clearTable();
-      setTable(1, 0, "1L2");
-      setTable(1, 1, "1R1");
-      setTable(2, 0, "0R3");
-      setTable(2, 1, "1L2");
-      setTable(3, 1, "0R4");
-      setTable(4, 1, "0R5");
+      setTableCell(1, 0, "1L2");
+      setTableCell(1, 1, "1R1");
+      setTableCell(2, 0, "0R3");
+      setTableCell(2, 1, "1L2");
+      setTableCell(3, 1, "0R4");
+      setTableCell(4, 1, "0R5");
       document.getElementById("tape-value").value = "01110111110";
 }
 
