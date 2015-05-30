@@ -215,7 +215,8 @@ function drawMachine(tapeValue, scanner, state) {
 }
 
 function drawScanner(painter, baseX, baseY, index, state) {
-      painter.fillText(String.fromCharCode(8593), baseX + 20 * index, baseY + 20 * 1, 20);
+      painter.fillText("↑", baseX + 20 * index, baseY + 20 * 1, 20);
+//      painter.fillText(String.fromCharCode(8593), baseX + 20 * index, baseY + 20 * 1, 20);
       painter.fillText(state, baseX + 20 * index, baseY + 20 * 2, 20);
 }
 
