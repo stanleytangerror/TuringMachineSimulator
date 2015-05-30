@@ -61,13 +61,28 @@ function setTable(state, mark, value) {
       td.children[0].onchange();
 }
 
+function clearTable() {
+      document.getElementById("next-button").disabled = true;
+      actions = {};
+      var table = document.getElementById("action-table");
+      var tbody = table.children[0];
+      var i = 1;
+      debugger
+      for (; i < tbody.children.length; ++i) {
+            tbody.children[i].children[1].children[0].value = "";
+            tbody.children[i].children[2].children[0].value = "";
+      }
+}
+
 function Z() {
+      clearTable();
       setTable(1, 0, "1O2");
       setTable(1, 1, "0R1");
       document.getElementById("tape-value").value = "011100";
 }
 
 function S() {
+      clearTable();
       setTable(1, 0, "1L2");
       setTable(1, 1, "1R1");
       setTable(2, 0, "0R3");
@@ -76,6 +91,7 @@ function S() {
 }
 
 function K() {
+      clearTable();
       setTable(1, 0, "0R2");
       setTable(1, 1, "1R1");
       setTable(2, 0, "0L3");
@@ -87,18 +103,21 @@ function K() {
 }
 
 function L() {
+      clearTable();
       setTable(1, 0, "0R2");
       setTable(1, 1, "0R1");
       document.getElementById("tape-value").value = "01110111110";
 }
 
 function pred() {
+      clearTable();
       setTable(1, 1, "0R2");
       setTable(2, 0, "1O3");
       document.getElementById("tape-value").value = "01110";
 }
 
 function add() {
+      clearTable();
       setTable(1, 0, "1L2");
       setTable(1, 1, "1R1");
       setTable(2, 0, "0R3");
