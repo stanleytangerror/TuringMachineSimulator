@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <title>Turing Machine</title>
+    <script src="table.js"></script>
+  </head>
+  
+  <body onload="pageLoaded(2)">
+    <div id="simulator">
+      <div>
+        <h1>Turing Machine Simulator</h1>
+      </div>
+      <div id="machine">
+        <div>
+          <p>Action table:</p>
+          <table id="action-table">
+            <tr class="row-mark">
+              <td></td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <button onclick="addRow()">+</button>
+          <button onclick="rmRow()">-</button>
+          <button id="clear-table" onclick="clearTable()">clear table</button>
+        </div>
+        <div>
+          <p>Examples:</p>
+          <ul style="list-style-type:none">
+          <li>
+            <button id="function-Z" onclick="Z()">Z(x) = 0</button>
+            <button id="function-S" onclick="S()">S(x) = x + 1</button>
+          </li>
+          <li>
+            <button id="function-K" onclick="K()">K(x, y) = x</button>
+            <button id="function-L" onclick="L()">L(x, y) = y</button>
+          </li>
+          <li>
+            <button id="function-pred" onclick="pred()">pred(x) = (x == 0) ? 0 : (x - 1)</button>
+            <button id="function-add" onclick="add()">add(x, y) = x + y</button>
+          </li>
+          </ul>
+        </div>
+        <div>
+          <p>Input:</p>
+          <p>
+            <input id="tape-value" type="text"></input>
+          </p>
+          <button id="new-machine" onclick="getNewMachine()">new machine</button>
+          <button id="next-button" onclick="next()">next</button>
+        </div>
+        <div>
+          <p>Machine:</p>
+          <canvas id="machine-canvas" width="300" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
