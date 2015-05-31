@@ -16,7 +16,8 @@ function addRow() {
       for (; i <= 2; ++i) {
             row.insertCell(i).innerHTML =
             "<input " +
-            "type=\"text\"" +
+            "type=\"text\" " +
+            "class=\"form-control\" " +
             "onchange=\"register(this, " + len + ", " + (i - 1) + ")\">" +
             "</input>";
       }
