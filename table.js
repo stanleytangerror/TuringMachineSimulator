@@ -2,12 +2,12 @@ var actions = {};
 var tape = [];
 
 function addRow() {
-      var tbody = document.getElementById("action-table-body");            
-      
+      var tbody = document.getElementById("action-table-body");
+
       var row = document.createElement("tr");
       row.setAttribute("class", "row-action");
       tbody.appendChild(row);
-            
+
       if (tbody.children != null) {
             var len = tbody.children.length;
       } else {
@@ -19,9 +19,9 @@ function addRow() {
       var i = 1;
       for (; i <= 2; ++i) {
             row.insertCell(i).innerHTML =
-            "<input " +
-            "type=\"text\" " +
+            "<input type=\"text\" " +
             "class=\"form-control\" " +
+            "maxlength=\"3\" " +
             "onchange=\"register(this, " + len + ", " + (i - 1) + ")\">" +
             "</input>";
       }
@@ -59,7 +59,7 @@ function register(element, state, mark) {
 function getTableCell(state, mark) {
       var tbody = document.getElementById("action-table-body");
       debugger
-      while (tbody.children === null 
+      while (tbody.children === null
             || tbody.children.length < state) {
             addRow();
       }
@@ -88,7 +88,7 @@ function clearTable() {
       actions = {};
       var tbody = document.getElementById("action-table-body");
       var i;
-//      debugger
+      //      debugger
       for (i = 0; i < tbody.children.length; ++i) {
             tbody.children[i].children[1].children[0].value = "";
             tbody.children[i].children[2].children[0].value = "";
@@ -237,7 +237,7 @@ function drawMachine(tapeValue, scanner, state) {
 
 function drawScanner(painter, baseX, baseY, index, state) {
       painter.fillText("↑", baseX + 20 * index, baseY + 20 * 1, 20);
-//      painter.fillText(String.fromCharCode(8593), baseX + 20 * index, baseY + 20 * 1, 20);
+      //      painter.fillText(String.fromCharCode(8593), baseX + 20 * index, baseY + 20 * 1, 20);
       painter.fillText(state, baseX + 20 * index, baseY + 20 * 2, 20);
 }
 
