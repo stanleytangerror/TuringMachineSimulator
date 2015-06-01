@@ -2,15 +2,19 @@ var actions = {};
 var tape = [];
 
 function addRow() {
-      var table = document.getElementById("action-table");
-      var tbody = table.children[0];
-      var len = tbody.children.length;
-
+      var tbody = document.getElementById("action-table-body");            
+      
       var row = document.createElement("tr");
       row.setAttribute("class", "row-action");
-      tbody.insertBefore(row, tbody.children[len - 1].nextSibling);
+      tbody.appendChild(row);
+            
+      if (tbody.children != null) {
+            var len = tbody.children.length;
+      } else {
+            var len = 0;
+      }
 
-      var state = row.insertCell(0);
+      var state = row.appendChild(document.createElement("th"));
       state.innerHTML = len.toString();
       var i = 1;
       for (; i <= 2; ++i) {
@@ -24,12 +28,11 @@ function addRow() {
 }
 
 function rmRow() {
-      var table = document.getElementById("action-table");
-      var tbody = table.children[0];
+      var tbody = document.getElementById("action-table-body");
       debugger
-      if (tbody.children.length > 1) {
-            clearTableCell(tbody.children.length - 1, 0);
-            clearTableCell(tbody.children.length - 1, 1);
+      if (tbody.children.length > 0) {
+            clearTableCell(tbody.children.length, 0);
+            clearTableCell(tbody.children.length, 1);
             tbody.removeChild(tbody.lastElementChild);
       }
 }
@@ -54,12 +57,13 @@ function register(element, state, mark) {
 }
 
 function getTableCell(state, mark) {
-      var table = document.getElementById("action-table");
-      var tbody = table.children[0];
-      while (tbody.children.length < 1 + state) {
+      var tbody = document.getElementById("action-table-body");
+      debugger
+      while (tbody.children === null 
+            || tbody.children.length < state) {
             addRow();
       }
-      var tr = tbody.children[state];
+      var tr = tbody.children[state - 1];
       var td = tr.children[mark + 1];
       return td.children[0];
 }
@@ -82,11 +86,10 @@ function clearTableCell(state, mark) {
 function clearTable() {
       document.getElementById("next-button").disabled = true;
       actions = {};
-      var table = document.getElementById("action-table");
-      var tbody = table.children[0];
-      var i = 1;
+      var tbody = document.getElementById("action-table-body");
+      var i;
 //      debugger
-      for (; i < tbody.children.length; ++i) {
+      for (i = 0; i < tbody.children.length; ++i) {
             tbody.children[i].children[1].children[0].value = "";
             tbody.children[i].children[2].children[0].value = "";
       }
