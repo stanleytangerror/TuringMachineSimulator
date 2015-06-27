@@ -21,7 +21,7 @@ function addRow() {
             row.insertCell(i).innerHTML =
             "<input type=\"text\" " +
             "class=\"form-control\" " +
-            "maxlength=\"3\" " +
+            "maxlength=\"4\" " +
             "onchange=\"register(this, " + len + ", " + (i - 1) + ")\">" +
             "</input>";
       }
@@ -41,7 +41,7 @@ function action(value) {
       return {
             setMark: value[0],
             move: value[1],
-            nextState: value[2]
+            nextState: value.slice(2, value.length)
       }
 }
 
