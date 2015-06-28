@@ -148,6 +148,31 @@ function add() {
       document.getElementById("tape-value").value = "01110111110";
 }
 
+function mul() {
+      clearTable();
+      setTableCell(1, 0, "0R10");
+      setTableCell(1, 1, "0R2");
+      setTableCell(2, 0, "0R3");
+      setTableCell(2, 1, "1R2");
+      setTableCell(3, 0, "0L8");
+      setTableCell(3, 1, "0R4");
+      setTableCell(4, 0, "0R5");
+      setTableCell(4, 1, "1R4");
+      setTableCell(5, 0, "1L6");
+      setTableCell(5, 1, "1R5");
+      setTableCell(6, 0, "0L7");
+      setTableCell(6, 1, "1L6");
+      setTableCell(7, 0, "1R3");
+      setTableCell(7, 1, "1L7");
+      setTableCell(8, 0, "0L9");
+      setTableCell(8, 1, "1L8");
+      setTableCell(9, 0, "0R1");
+      setTableCell(9, 1, "1L9");
+      setTableCell(10, 0, "0R11");
+      setTableCell(10, 1, "0R10");
+      document.getElementById("tape-value").value = "011101100000000";
+}
+
 function pageLoaded(lineCount) {
       var i = 0;
       for (; i < lineCount; ++i) {
